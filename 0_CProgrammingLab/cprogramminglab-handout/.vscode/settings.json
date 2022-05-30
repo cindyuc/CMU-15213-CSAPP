@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "harness.h": "c",
+        "queue.h": "c"
+    }
+}
